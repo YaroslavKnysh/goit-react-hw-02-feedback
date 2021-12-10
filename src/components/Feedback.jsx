@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import style from './Feedback.module.css';
 import _ from 'lodash';
+import Statistics from './Statistics';
+import FeedbackOptions from './FeedbackOptions';
 
 class Feedback extends Component {
   constructor() {
@@ -29,43 +31,25 @@ class Feedback extends Component {
   render() {
     return (
       <div>
-        <button
-          type="button"
-          onClick={() => {
-            this.addFeedback('good');
+        <FeedbackOptions
+          onAddFeedback={key => {
+            this.addFeedback(key);
           }}
-        >
-          Good
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            this.addFeedback('neutral');
-          }}
-        >
-          Neutral
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            this.addFeedback('bad');
-          }}
-        >
-          Bad
-        </button>
+        />
+
         <h2>Statistics</h2>
         {this.countTotalFeedback() === 0 ? (
           <div>
             <p>There is no feedback</p>
           </div>
         ) : (
-          <ul>
-            <li>Good:{this.state.good}</li>
-            <li>Neutral:{this.state.neutral}</li>
-            <li>Bad:{this.state.bad}</li>
-            <li>Total:{this.countTotalFeedback()}</li>
-            <li>Positive feedback:{this.countPositiveFeedbackPercentage()}%</li>
-          </ul>
+          <Statistics
+            countTotal={this.countTotalFeedback()}
+            percentage={this.countPositiveFeedbackPercentage()}
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+          />
         )}
       </div>
     );
