@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
-const FeedbackOptions = ({ onAddFeedback }) => (
+const FeedbackOptions = ({ onAddFeedback, options }) => (
   <div>
-    <button type="button" onClick={e => onAddFeedback('good')}>
-      Good
-    </button>
-    <button type="button" onClick={e => onAddFeedback('neutral')}>
-      Neutral
-    </button>
-    <button type="button" onClick={e => onAddFeedback('bad')}>
-      Bad
-    </button>
+    {options.map(option => (
+      <button type="button" onClick={e => onAddFeedback(option)}>
+        {_.capitalize(option)}
+      </button>
+    ))}
   </div>
 );
 
