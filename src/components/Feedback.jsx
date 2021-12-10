@@ -44,11 +44,11 @@ class Feedback extends Component {
           </div>
         ) : (
           <Statistics
-            countTotal={this.countTotalFeedback()}
-            percentage={this.countPositiveFeedbackPercentage()}
             good={this.state.good}
             neutral={this.state.neutral}
             bad={this.state.bad}
+            countTotal={this.countTotalFeedback()}
+            percentage={this.countPositiveFeedbackPercentage()}
           />
         )}
       </div>
